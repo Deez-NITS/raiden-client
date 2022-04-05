@@ -1,0 +1,37 @@
+
+nav{
+    
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    background-color: #ccc;
+    padding: 2%;
+    
+    a{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 5rem;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1%;
+        background-color: rgb(103, 103, 103);
+        border-radius: 10px;
+        color: inherit;
+    }
+
+    .ham-icon{
+        position: absolute;
+        left: 100%;
+        top:0;
+        font-size: 3rem;
+        background-color: rgba(255, 255, 255, 0);
+        color: rgb(57, 57, 57);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0; 
+    background: transparent;  
+}

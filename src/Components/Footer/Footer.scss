@@ -1,0 +1,14 @@
+@use '../../color.scss';
+
+footer{
+    width: 100%;
+    position: fixed;
+    bottom:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6%;
+    box-shadow: 1px -3px 6px -3px rgba(34, 34, 34, 0.351);
+    color: color.$text-light;
+    background-color: white;
+}

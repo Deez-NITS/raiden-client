@@ -9,7 +9,7 @@ import "./App.scss";
 const App = () => {
   return (
     <Fragment>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
