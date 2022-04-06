@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Navbar, Footer } from "./Components";
-import { Auth, Home } from "./Pages";
+import { Auth, Home, Flight } from "./Pages";
 
 import "./App.scss";
 
@@ -15,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/flight" element={<Flight />} />
       </Routes>
       <Footer />
     </Fragment>
