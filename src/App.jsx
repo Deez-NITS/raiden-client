@@ -7,9 +7,11 @@ import { Auth, Home } from "./Pages";
 import "./App.scss";
 
 const App = () => {
+  const isLoggedIn = true;
+
   return (
     <Fragment>
-      {/* <Navbar /> */}
+      {isLoggedIn && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
