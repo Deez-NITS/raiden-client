@@ -1,6 +1,4 @@
 import "./Auth.scss";
-import background from '../../Resources/Images/background.svg';
-import logo from '../../Resources/Images/logo.png';
 import {Button} from '../../Components';
 import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
@@ -12,9 +10,9 @@ const Auth = () => {
 
   return (
   <section>
-    <img src={background} className="background"/>
+    <img src={'src/Resources/Images/background.svg'} className="background"/>
     <form>
-      <h1><img src={logo}/>Raiden</h1>
+      <h1><img src={'src/Resources/Images/logo.png'}/>Raiden</h1>
       <label>Email</label>
       <input 
       placeholder="example@exp.com"

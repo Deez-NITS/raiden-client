@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -11,17 +11,13 @@ import "./App.scss";
 
 const App = ({ auth, registerUser }) => {
   console.log(auth);
-  useEffect(() => {
-    registerUser({
-      name: "Pratik Majumdar",
-      email: "info.pratikmajumdar@gmail.com",
-      phoneNo: "3875927859",
-      password: "pratik2002",
-    });
-  }, []);
+
+  const isLoggedIn = true;
+  // const isLoggedIn = auth.isAuthenticated;
+
   return (
     <Fragment>
-      {/* <Navbar /> */}
+      {isLoggedIn && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
