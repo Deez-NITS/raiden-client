@@ -1,9 +1,9 @@
-import { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Fragment, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import { Navbar, Footer } from "./Components";
+import { Navbar, Footer, Loader } from "./Components";
 import { Auth, Home, Register } from "./Pages";
 
 import "./App.scss";
@@ -12,15 +12,26 @@ const App = ({ auth }) => {
   console.log(auth);
 
   const isLoggedIn = true;
-  // const isLoggedIn = auth.isAuthenticated;
+
+  if (auth.loading) {
+    return <Loader />;
+  }
 
   return (
     <Fragment>
       {isLoggedIn && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Auth />} />
-        <Route path="/register" element={<Register />} />
+        {!auth.isAuthenticated ? (
+          <Route path="/login" element={<Auth />} />
+        ) : (
+          <Route path="/login" element={<Navigate replace to={"/"} />} />
+        )}
+        {!auth.isAuthenticated ? (
+          <Route path="/register" element={<Register />} />
+        ) : (
+          <Route path="/register" element={<Navigate replace to={"/"} />} />
+        )}
       </Routes>
       <Footer />
     </Fragment>
