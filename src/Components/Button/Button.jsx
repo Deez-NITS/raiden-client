@@ -4,7 +4,7 @@ const Button = ({ label, primary, onClick }) => {
   const cName = primary ? "primary-button" : "";
 
   return (
-    <button className={cName} onClick={onClick}>
+    <button className={cName} onClick={onClick ?? null}>
       {label}
     </button>
   );
