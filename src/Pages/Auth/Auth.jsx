@@ -1,12 +1,11 @@
 import "./Auth.scss";
-import {Button} from '../../Components';
+import { Button } from "../../Components";
 import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 
 const Auth = () => {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
   <section className="authPage">
