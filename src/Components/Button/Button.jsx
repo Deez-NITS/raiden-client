@@ -1,10 +1,10 @@
 import './Button.scss';
 
-const Button = ({label, primary })=>{
+const Button = ({label, primary, onclickFunction })=>{
     const cName = primary? "primary-button" : "";
 
     return (
-        <button className={cName}>{label}</button>
+        <button onClick={onclickFunction ?? null} className={cName}>{label}</button>
     )
 }
 
