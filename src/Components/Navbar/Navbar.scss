@@ -1,6 +1,6 @@
 @use 'src/color.scss';
 nav{
-    
+    z-index: 120;
     width: 20rem;
     height: 100%;
     position: fixed;
@@ -8,6 +8,7 @@ nav{
     box-shadow: 5px 1px 5px -1px rgba(0, 0, 0, 0.326);
     padding: 2%;
     transition: 200ms;
+    z-index: 3;
     
     a{
         display:flex;

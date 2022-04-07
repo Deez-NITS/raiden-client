@@ -1,6 +1,7 @@
 @use 'src/color.scss';
 
-.background{
+.authPage{
+    .background{
     position: fixed;
     width:100%;
     bottom: 0;
@@ -74,4 +75,5 @@ form{
             font-style:italic;
         }
     }
+}
 }

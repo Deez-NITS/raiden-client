@@ -31,7 +31,7 @@ const Register = ({ auth, register }) => {
   };
 
   return (
-    <section>
+    <section className="regPage">
       <img src={"src/Resources/Images/background.svg"} className="background" />
       <form onSubmit={handleFormSubmit}>
         <h1>
