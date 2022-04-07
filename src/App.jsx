@@ -20,7 +20,7 @@ const App = ({ auth, registerUser }) => {
       {isLoggedIn && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/login" element={<Auth />} />
         <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
