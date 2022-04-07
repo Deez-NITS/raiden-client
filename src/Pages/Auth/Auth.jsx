@@ -1,15 +1,14 @@
 import "./Auth.scss";
-import {Button} from '../../Components';
+import { Button } from "../../Components";
 import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 
 const Auth = () => {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
-  <section>
+  <section className="authPage">
     <img src={'src/Resources/Images/background.svg'} className="background"/>
     <form>
       <h1><img src={'src/Resources/Images/logo.png'}/>Raiden</h1>

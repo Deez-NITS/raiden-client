@@ -35,8 +35,8 @@ const Landing = ({auth, login}) => {
       <h1 id="heading">Raiden</h1>
 
       <div id = "authButtons">
-        <Button onclickFunction = {redirectSignIn} primary = {true} label = {"SignUp"} />
-        <Button onclickFunction={redirectLogin} primary = {false} label = {"login"} />
+        <Button onClick = {redirectSignIn} primary = {true} label = {"SignUp"} />
+        <Button onClick={redirectLogin} primary = {false} label = {"login"} />
       </div>
 
       <div id="upperSection">

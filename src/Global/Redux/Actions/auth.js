@@ -1,27 +1,47 @@
 import { authActions } from "../Slices/auth-slice";
 
+import httpService from "../../Services/httpService";
+
 /**
  *
  * @param {{
  *    name: string;
- *    phoneNo: string;
+ *    phoneNumber: string;
  *    email: string;
  *    password: string;
+ *    dob: string;
  * }} data
  * @description Creates a action creator thunk for registering of a user
  */
 export const registerUser = (data) => {
   return async (dispatch) => {
-    const { name, phoneNo, email, password } = data;
-
+    // Check user input
+    const { email, dob, name, phoneNumber } = data;
     dispatch(authActions.login());
 
     try {
       // Call backend API for registering
+      const res = await httpService.post("/auth/signup", data);
+
+      // TODO alert state update
+      if (!res.data.success) {
+        throw new Error(res.data.error);
+      }
+
       dispatch(authActions.otpSend());
 
       // On success
-      dispatch(authActions.loginSuccess());
+      // TODO Success state update
+
+      // res.data.message is "User created successfully" so need to display as a success alert
+      dispatch(
+        authActions.loginSuccess({
+          email,
+          dob,
+          phoneNumber,
+          name,
+        })
+      );
       dispatch(authActions.otpSendSuccess());
     } catch (err) {
       // If Login error
@@ -42,12 +62,17 @@ export const registerUser = (data) => {
  */
 export const verifyOtp = (data) => {
   return async (dispatch) => {
-    const { email, otp } = data;
-
     dispatch(authActions.otpVerify());
 
     try {
       // Send request to backend
+      const res = await httpService.post("/auth/otp/verify", data);
+
+      // TODO alert state update
+      if (!res.data.success) {
+        throw new Error(res.data.error);
+      }
+      // TODO Success state update
 
       // If success
       dispatch(authActions.otpVerifySuccess());
@@ -89,12 +114,19 @@ export const loadUser = (data) => {
  */
 export const loginUser = (data) => {
   return async (dispatch) => {
-    const { email, password } = data;
-
     dispatch(authActions.login());
 
     try {
       // Send request to backend
+      const res = await httpService.post("/auth/login", data);
+
+      // TODO Alert state update
+      if (!res.data.success) {
+        throw new Error(res.data.error);
+      }
+      // TODO Success state update
+
+      // Fetch user and then store globally
       let user;
       // If success
       dispatch(authActions.loginSuccess(user));
@@ -115,6 +147,14 @@ export const logoutUser = () => {
 
     try {
       // Send request to backend
+      const res = await httpService.post("/auth/logout");
+
+      // TODO Alert state update
+      if (!res.data.success) {
+        throw new Error(res.data.error);
+      }
+
+      // TODO Success state update
 
       // If success
       dispatch(authActions.logoutSuccess());
