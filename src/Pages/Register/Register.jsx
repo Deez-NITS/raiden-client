@@ -23,7 +23,7 @@ const Register = () => {
   };
 
   return (
-    <section>
+    <section className="regPage">
       <img src={"src/Resources/Images/background.svg"} className="background" />
       <form>
         <h1>
