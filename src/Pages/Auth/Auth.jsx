@@ -9,7 +9,7 @@ const Auth = () => {
   const [password, setPassword] = useState('');
 
   return (
-  <section>
+  <section className="authPage">
     <img src={'src/Resources/Images/background.svg'} className="background"/>
     <form>
       <h1><img src={'src/Resources/Images/logo.png'}/>Raiden</h1>

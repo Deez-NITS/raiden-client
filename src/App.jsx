@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { registerUser } from "./Global/Redux/Actions";
 
 import { Navbar, Footer } from "./Components";
-import { Auth, Home, Register } from "./Pages";
+import { Auth, Home, Register, Verify } from "./Pages";
 
 import "./App.scss";
 
@@ -22,6 +22,7 @@ const App = ({ auth, registerUser }) => {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify" element={<Verify />} />
       </Routes>
       <Footer />
     </Fragment>

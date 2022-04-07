@@ -14,7 +14,7 @@ const Register = ()=>{
 
 
     return (
-        <section>
+        <section className='regPage'>
             <img src={'src/Resources/Images/background.svg'} className="background"/>
             <form>
                 <h1><img src={'src/Resources/Images/logo.png'}/>Raiden</h1>
@@ -23,14 +23,15 @@ const Register = ()=>{
                     placeholder='Your first name'
                     value = {fname}
                     onChange={(e)=>setFname(e.target.value)}
+                    required
                     />
-                <p>{fname}</p>
                 </label>
                 <label>Last Name
                     <input
                     placeholder='Your last name'
                     value = {lname}
                     onChange={(e)=>setLname(e.target.value)}
+                    required
                     />
                 </label>
                 <label>Email
@@ -38,6 +39,7 @@ const Register = ()=>{
                     placeholder='Your email Id'
                     value = {email}
                     onChange={(e)=>setEmail(e.target.value)}
+                    required
                     />
                 </label>
                 <label>Phone Number
@@ -45,6 +47,7 @@ const Register = ()=>{
                     placeholder='Your cellphone number'
                     value = {phoneNo}
                     onChange={(e)=>setPhoneNo(e.target.value)}
+                    required
                     />
                 </label>  
                 <label>Password
@@ -53,6 +56,7 @@ const Register = ()=>{
                     value = {password}
                     onChange={(e)=>setPassword(e.target.value)}
                     type="password"
+                    required
                     />
                 </label>           
                 <label>Confirm Password
@@ -61,6 +65,7 @@ const Register = ()=>{
                     value = {passwordConfirm}
                     onChange={(e)=>setPasswordConfirm(e.target.value)}
                     type="password"
+                    required
                     />
                 </label>           
                 <Button className="login-button" label="Sign up" primary={true}/>
