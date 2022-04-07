@@ -5,15 +5,14 @@ axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 // Sending auth token with every requests
 axios.interceptors.request.use(
-  (config) => {
-    const accessToken = localStorage.getItem("_accessToken");
-    if (accessToken) {
-      config.headers["Authorization"] = `Bearer ${accessToken}`;
-    }
-    return config;
+  (request) => {
+    request.withCredentials = true;
+    request.headers["Content-Type"] = "application/json";
+    request.headers["Accept"] = "application/json";
+    return request;
   },
   (err) => {
-    Promise.reject(err);
+    return Promise.reject(err);
   }
 );
 
