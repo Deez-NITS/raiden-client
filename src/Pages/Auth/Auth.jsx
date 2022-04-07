@@ -1,16 +1,34 @@
-import "./Auth.scss";
-import { Button } from "../../Components";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
+import { connect } from "react-redux";
 
-const Auth = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import { loginUser } from "../../Global/Redux/Actions";
+import { Button } from "../../Components";
+
+import "./Auth.scss";
+
+const Auth = ({ auth, login }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleFormInput = (e) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    login(formData);
+  };
 
   return (
     <section>
       <img src={"src/Resources/Images/background.svg"} className="background" />
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <h1>
           <img src={"src/Resources/Images/logo.png"} />
           Raiden
@@ -19,19 +37,17 @@ const Auth = () => {
         <input
           placeholder="example@exp.com"
           required
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          value={formData.email}
+          onChange={handleFormInput}
+          name="email"
         />
         <label>Password</label>
         <input
           type="password"
           required
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          value={formData.password}
+          onChange={handleFormInput}
+          name="password"
         />
         <Button className="login-button" label="Login" primary={true} />
         <span>
@@ -42,4 +58,12 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login: (data) => dispatch(loginUser(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

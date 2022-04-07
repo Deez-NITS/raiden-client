@@ -2,14 +2,13 @@ import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { registerUser } from "./Global/Redux/Actions";
 
 import { Navbar, Footer } from "./Components";
 import { Auth, Home, Register } from "./Pages";
 
 import "./App.scss";
 
-const App = ({ auth, registerUser }) => {
+const App = ({ auth }) => {
   console.log(auth);
 
   const isLoggedIn = true;
@@ -32,8 +31,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  registerUser: (user) => dispatch(registerUser(user)),
-});
+// const mapDispatchToProps = (dispatch) => {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
