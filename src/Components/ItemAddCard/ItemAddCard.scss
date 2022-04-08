@@ -1,0 +1,46 @@
+@use "/src/color.scss";
+
+#itemAddCard{
+  padding: 1rem;
+  background-color: color.$bg-primary;
+  box-shadow: 0 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;  
+
+  #closeBtn{
+    float: right;
+    font-size: 2rem;
+  }
+
+  #itemDetails{
+    display: flex;
+
+    #itemImage{
+      width: 8rem;
+      height: 8rem;
+      border: 0.001rem rgb(0, 0, 0, 0.25) solid;
+      overflow: hidden;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: 1rem;
+      img{
+        height: 100%;
+      }
+    }
+
+    #itemName{
+      flex-grow: 1;
+      font-size: 2rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+  }
+  #addBtnContainer{
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    justify-content: space-between;
+  }
+}
