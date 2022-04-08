@@ -25,7 +25,7 @@ const Verify = ({ auth, verify }) => {
       navigate("/login");
     }
     if (auth.isAuthenticated) {
-      navigate("/home");
+      navigate("/flight");
     }
   }, [auth]);
 

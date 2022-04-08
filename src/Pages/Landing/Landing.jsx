@@ -31,11 +31,12 @@ const Landing = ({ auth }) => {
   return (
     <section id="landingSection">
       <h1 id="heading">Raiden</h1>
-
-      <div id="authButtons">
-        <Button onClick={redirectSignIn} primary={true} label={"SignUp"} />
-        <Button onClick={redirectLogin} primary={false} label={"login"} />
-      </div>
+      {!auth.isAuthenticated && (
+        <div id="authButtons">
+          <Button onClick={redirectSignIn} primary={true} label={"SignUp"} />
+          <Button onClick={redirectLogin} primary={false} label={"login"} />
+        </div>
+      )}
 
       <div id="upperSection">
         <img src={"src/Resources/Images/background.svg"} id="background" />

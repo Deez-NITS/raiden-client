@@ -8,6 +8,7 @@ const authInitialState = {
   otpSent: false,
   otpVerified: false,
   type: "user",
+  fetched: false,
 };
 
 const authSlice = createSlice({
