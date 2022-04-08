@@ -12,6 +12,7 @@ import {
   Landing,
   Flight,
   Sellers,
+  Cart,
 } from "./Pages";
 
 import "./App.scss";
@@ -44,6 +45,7 @@ const App = ({ auth }) => {
         <Route path="/verify" element={<Verify />} />
         <Route path="/sellers/:airportId" element={<Sellers />} />
         <Route path="/flight" element={<Flight />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </Fragment>
