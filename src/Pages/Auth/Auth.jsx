@@ -26,7 +26,7 @@ const Auth = ({ auth, login }) => {
   };
 
   return (
-    <section>
+    <section className="authPage">
       <img src={"src/Resources/Images/background.svg"} className="background" />
       <form onSubmit={handleFormSubmit}>
         <h1>

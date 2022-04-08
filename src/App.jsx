@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { Navbar, Footer, Loader } from "./Components";
-import { Auth, Home, Register, Verify, Landing, Flight,Sellers } from "./Pages";
+import { Auth, Home, Register, Verify, Landing, Flight, Sellers } from "./Pages";
 
 import "./App.scss";
 
