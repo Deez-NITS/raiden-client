@@ -204,7 +204,7 @@ const userLoadingFailure = (state) => ({
   loading: false,
 });
 
-export {
+export default {
   login,
   loginSuccess,
   loginFailure,

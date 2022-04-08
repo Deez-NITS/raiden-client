@@ -17,7 +17,7 @@ const Landing = ({ auth, login }) => {
     App: 0,
   });
 
-  const sponsors = ["", "", ""];
+  const sponsors = ["Something", "Something 2", "Something 3"];
 
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const Landing = ({ auth, login }) => {
 
         <div id="figuresContainer">
           {Object.keys(figures).map((key) => (
-            <div id="figure">
+            <div id="figure" key={key}>
               <div>{figures[key]}</div>
               <div>{key}</div>
             </div>
@@ -56,7 +56,7 @@ const Landing = ({ auth, login }) => {
 
         <div id="sponsorsContainer">
           {sponsors.map((elem) => (
-            <div className="sponsor">
+            <div className="sponsor" key={elem}>
               <a href={elem}>
                 <img src={elem} alt="" />
               </a>

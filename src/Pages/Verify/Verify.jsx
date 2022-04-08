@@ -15,7 +15,7 @@ const Verify = () => {
           A 4-digit OTp has been sent to <br />
           jo*******@****.com
         </label>
-        <input placeholder="OTP" required maxlength="4" />
+        <input placeholder="OTP" required minLength={"8"} maxlength="20" />
         <Button className="login-button" label="Verify" primary={true} />
         <span>
           Did not recieve an OTP? <Link to="#">click here</Link> to resend OTP
