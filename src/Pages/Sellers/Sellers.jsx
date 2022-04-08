@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { ProgressBar } from "../../Components";
+import { ItemList, ProgressBar } from "../../Components";
 import { AiFillStar } from "react-icons/ai"
 import "./Sellers.scss"
 
@@ -32,6 +32,8 @@ const Sellers = () => {
         </div>
         Raiden
       </h1>
+
+      <ItemList/>
 
       <div id="sellerListContainer">
         <h2 id="sellerListHeading" >{"blaze aa"}</h2>
