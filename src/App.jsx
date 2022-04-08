@@ -3,13 +3,16 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-<<<<<<< HEAD
-import { Navbar, Footer } from "./Components";
-import { Auth, Home, Register, Verify, Landing, Sellers } from "./Pages";
-=======
 import { Navbar, Footer, Loader } from "./Components";
-import { Auth, Home, Register, Verify, Landing, Flight } from "./Pages";
->>>>>>> 03b7056a71e1e1b7aaa26fe06596d6e27f4ff3bd
+import {
+  Auth,
+  Home,
+  Register,
+  Verify,
+  Landing,
+  Flight,
+  Sellers,
+} from "./Pages";
 
 import "./App.scss";
 
