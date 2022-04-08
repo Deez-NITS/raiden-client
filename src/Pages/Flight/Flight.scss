@@ -88,21 +88,19 @@
 
         .header{
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             height: 5rem;
-            padding: 2rem;
-            padding-left: 4rem;
-            padding-right: 4rem;
+            padding: 4rem;
+            padding-bottom: 2rem;
             h1{
-                display: inline;
-                float: left;
                 font-size: 2rem;
                 color: color.$text-dark;
             }
 
             h3{
-                display: inline;
-                float: right;
-                font-size: 1.2rem;
+                font-size: 1.5rem;
                 color:color.$text-light;
             }
         }
@@ -116,9 +114,9 @@
             .airport{
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 padding-left: 2rem;
                 padding-right: 2rem;
-                align-items: center;
                 background-color: white;
                 height: 5rem;
                 margin-top: 1rem;
@@ -136,6 +134,13 @@
                         font-weight: 800;
                         color: color.$text-light;
                         margin-left: 2rem;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        svg{
+                            color: color.$star;
+                        }
                     }
                 }
 
@@ -146,9 +151,41 @@
                     font-weight: 600;
                     font-size: 1.3rem;
                 }
+
             }
         }
 
+    }
+
+    .dateSelect{
+        position: fixed;
+        transform: translate(0, -50%);
+        top:45%;
+        right: 5rem;
+        background-color: #DEDEDE;
+        padding: 1rem 0 1rem -1rem;
+        overflow: scroll;
+        height: 30rem;
+        border-radius: 40px;
+
+        .date{
+            width: 12rem;
+            height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            background-color: #98BFE2;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color:white;
+            box-shadow: 0 3px 4px 1px rgba(43, 43, 43, 0.326);
+            cursor: pointer;
+        }
+
+        .date[name=active]{
+            background-color: #244F90;
+        }
     }
     
 }
