@@ -5,8 +5,8 @@ import FlightResults from './FlightResults';
 import { useState } from 'react';
 
 const Flight = ()=>{
-    const [foundFlight, setFoundFlight]= useState(true);
-    const [flight, setFlight] = useState('dsdds');
+    const [foundFlight, setFoundFlight]= useState(false);
+    const [flight, setFlight] = useState('');
 
     return(
         <section className='flightPage'>
