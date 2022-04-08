@@ -127,13 +127,18 @@ export const loadUser = () => {
 
     try {
       // Send request to backend
-      let user;
+      const res = await httpService.get("/user");
+
+      if (!res.data.success) {
+        throw new Error(res.data.error);
+      }
+
       // If success
-      dispatch(authActions.userLoadingSuccess(user));
+      dispatch(authActions.userLoadingSuccess(res.data.message));
     } catch (err) {
       // If error
       setAlert(dispatch, { message: err.message, type: "danger" });
-      dispatch(authActions.otpVerifyFailure());
+      dispatch(authActions.userLoadingFailure());
     }
   };
 };

@@ -6,6 +6,7 @@
  *      otpSent: boolean;
  *      otpVerified: boolean;
  *      type: "user" | "provider";
+ *      fetched: boolean;
  *    }} authState
  *
  * @typedef {{
@@ -99,6 +100,7 @@ const logoutSuccess = (state) => {
     loading: false,
     otpVerified: false,
     type: "",
+    fetched: false,
   };
 };
 
@@ -206,7 +208,8 @@ const userLoadingSuccess = (state, action) => {
     user: action.payload,
     loading: false,
     otpVerified: action.payload.verified,
-    type: action.payload.type,
+    type: action.payload.role,
+    fetched: true,
   };
 };
 
