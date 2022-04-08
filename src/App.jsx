@@ -4,21 +4,16 @@ import { toast, ToastContainer } from "react-toastify";
 
 import { connect } from "react-redux";
 
+import { loadUser } from "./Global/Redux/Actions";
 import { Navbar, Footer, Loader } from "./Components";
-import {
-  Auth,
-  Home,
-  Register,
-  Verify,
-  Landing,
-  Flight,
-  Sellers,
-} from "./Pages";
+import { Auth, Register, Verify, Landing, Flight, Sellers } from "./Pages";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 
-const App = ({ auth, alert }) => {
+let fetched = false;
+
+const App = ({ auth, alert, userLoad }) => {
   const isLoggedIn = true;
 
   console.log(auth);
@@ -40,13 +35,19 @@ const App = ({ auth, alert }) => {
     }
   }, [alert]);
 
+  useEffect(() => {
+    if (!fetched) {
+      fetched = !fetched;
+      userLoad();
+    }
+  }, []);
+
   return (
     <Fragment>
       {isLoggedIn && <Navbar />}
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
         {!auth.isAuthenticated || !auth.otpVerified ? (
           <Fragment>
             <Route path="/login" element={<Auth />} />
@@ -55,17 +56,28 @@ const App = ({ auth, alert }) => {
           </Fragment>
         ) : (
           <Fragment>
-            <Route path="/login" element={<Navigate replace to={"/home"} />} />
+            <Route
+              path="/login"
+              element={<Navigate replace to={"/flight"} />}
+            />
             <Route
               path="/register"
-              element={<Navigate replace to={"/home"} />}
+              element={<Navigate replace to={"/flight"} />}
             />
-            <Route path="/verify" element={<Navigate replace to={"/home"} />} />
+            <Route
+              path="/verify"
+              element={<Navigate replace to={"/flight"} />}
+            />
           </Fragment>
         )}
-
-        <Route path="/sellers/:airportId" element={<Sellers />} />
-        <Route path="/flight" element={<Flight />} />
+        {auth.isAuthenticated ? (
+          <Fragment>
+            <Route path="/sellers/:airportId" element={<Sellers />} />
+            <Route path="/flight" element={<Flight />} />
+          </Fragment>
+        ) : (
+          <Route path="*" element={<Navigate replace to={"/"} />} />
+        )}
       </Routes>
       <Footer />
     </Fragment>
@@ -77,6 +89,8 @@ const mapStateToProps = (state) => ({
   alert: state.alert,
 });
 
-// const mapDispatchToProps = (dispatch) => {};
+const mapDispatchToProps = (dispatch) => ({
+  userLoad: () => dispatch(loadUser()),
+});
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
