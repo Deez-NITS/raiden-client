@@ -12,8 +12,7 @@ const Verify = () => {
           Raiden
         </h1>
         <label>
-          A 4-digit OTp has been sent to <br />
-          jo*******@****.com
+          An OTP has been sent to your email
         </label>
         <input placeholder="OTP" required minLength={"8"} maxlength="20" />
         <Button className="login-button" label="Verify" primary={true} />
