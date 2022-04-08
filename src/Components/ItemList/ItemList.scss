@@ -13,7 +13,7 @@
   
   #sellerContainer{
     display: flex;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     font-size: 2rem;
 
     #sellerDetails{
@@ -127,5 +127,14 @@
       }
 
     }
+  }
+
+  #itemAddCardContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 60%;
   }
 }

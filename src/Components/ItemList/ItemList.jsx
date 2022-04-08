@@ -1,7 +1,8 @@
 import "./ItemList.scss"
-import { AiOutlineClose } from "react-icons/ai"
+import { MdOutlineClose } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"
 import Button from "../Button/Button"
+import ItemAddCard from "../ItemAddCard/ItemAddCard"
 
 const ItemList = () => {
 
@@ -29,7 +30,7 @@ const ItemList = () => {
             <div id="sellerDescription">{"hallal"}</div>
           </div>
         </div>
-        <AiOutlineClose id="closeBtn" onClick={handleClose}/>
+        <MdOutlineClose id="closeBtn" onClick={handleClose}/>
       </div>
 
       <div id="itemList">
@@ -53,6 +54,10 @@ const ItemList = () => {
             </div>
           ))
         }
+      </div>
+
+      <div id="itemAddCardContainer">
+        <ItemAddCard/>
       </div>
 
     </section>
