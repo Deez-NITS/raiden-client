@@ -21,7 +21,10 @@ export const registerUser = (data) => {
 
     try {
       // Call backend API for registering
-      const res = await httpService.post("/auth/signup", data);
+      const res = await httpService.post("/auth/signup", {
+        ...data,
+        dob: new Date(dob).getTime(),
+      });
 
       // TODO alert state update
       if (!res.data.success) {
@@ -37,7 +40,7 @@ export const registerUser = (data) => {
       dispatch(
         authActions.loginSuccess({
           email,
-          dob,
+          dob: new Date(dob).getTime(),
           phoneNumber,
           name,
         })

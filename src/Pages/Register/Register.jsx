@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
+import { registerUser } from "../../Global/Redux/Actions";
 import { Button } from "../../Components";
 
 import "./Register.scss";
 
-const Register = () => {
+const Register = ({ auth, register }) => {
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
@@ -22,10 +24,16 @@ const Register = () => {
     }));
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const { confirmPassword, ...data } = formData;
+    register(data);
+  };
+
   return (
     <section className="regPage">
       <img src={"src/Resources/Images/background.svg"} className="background" />
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <h1>
           <img src={"src/Resources/Images/logo.png"} />
           Raiden
@@ -96,4 +104,12 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  register: (data) => dispatch(registerUser(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

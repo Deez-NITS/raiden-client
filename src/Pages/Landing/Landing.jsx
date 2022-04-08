@@ -1,16 +1,15 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 
-import {connect} from "react-redux"
-import {loginUser, registerUser} from "../../Global/Redux/Actions"
+import { connect } from "react-redux";
+import { loginUser, registerUser } from "../../Global/Redux/Actions";
 
 import { Button } from "../../Components";
 import "./Landing.scss";
 import { FaPhoneAlt } from "react-icons/fa";
-import { BsGithub } from "react-icons/bs"
+import { BsGithub } from "react-icons/bs";
 
-const Landing = ({auth, login}) => {
-  
+const Landing = ({ auth, login }) => {
   const [figures, setFigures] = useState({
     Happycustomers: 0,
     States: 0,
@@ -18,83 +17,81 @@ const Landing = ({auth, login}) => {
     App: 0,
   });
 
-  const sponsors = ["","",""];
+  const sponsors = ["", "", ""];
 
   const navigate = useNavigate();
 
   const redirectSignIn = () => {
-    return navigate("/auth")
-  }
+    return navigate("/register");
+  };
 
   const redirectLogin = () => {
-    return navigate("/auth")
-  }
+    return navigate("/login");
+  };
 
-  return (  
+  return (
     <section id="landingSection">
       <h1 id="heading">Raiden</h1>
 
-      <div id = "authButtons">
-        <Button onClick = {redirectSignIn} primary = {true} label = {"SignUp"} />
-        <Button onClick={redirectLogin} primary = {false} label = {"login"} />
+      <div id="authButtons">
+        <Button onClick={redirectSignIn} primary={true} label={"SignUp"} />
+        <Button onClick={redirectLogin} primary={false} label={"login"} />
       </div>
 
       <div id="upperSection">
-        <img src={'src/Resources/Images/background.svg'} id="background"/>
-        <div id="subHeading">
-          Make your meals wait for you
-        </div>
-        
+        <img src={"src/Resources/Images/background.svg"} id="background" />
+        <div id="subHeading">Make your meals wait for you</div>
+
         <div id="figuresContainer">
-          {
-            Object.keys(figures).map((key) => (
-              <div id="figure">
-                <div>{figures[key]}</div>
-                <div>{key}</div>
-              </div>
-            ))
-          }
+          {Object.keys(figures).map((key) => (
+            <div id="figure">
+              <div>{figures[key]}</div>
+              <div>{key}</div>
+            </div>
+          ))}
         </div>
       </div>
       <div id="lowerSection">
-        <img src={'src/Resources/Images/background.svg'} id="background"/>
+        <img src={"src/Resources/Images/background.svg"} id="background" />
 
         <div id="sponsorsContainer">
-          {
-            sponsors.map((elem) => (
-              <div className="sponsor">
-                <a href={elem}>
-                  <img src={elem} alt="" />
-                </a>
-              </div>
-            ))
-          }
+          {sponsors.map((elem) => (
+            <div className="sponsor">
+              <a href={elem}>
+                <img src={elem} alt="" />
+              </a>
+            </div>
+          ))}
         </div>
 
         <div id="contacts">
           <div id="contactHeading">Contact us</div>
           <a href="#" target="_blank" rel={"noreferrer"}>
-            <img className="contactIcons" src="/src/Resources/Images/gmailLogo.png" alt="" />
+            <img
+              className="contactIcons"
+              src="/src/Resources/Images/gmailLogo.png"
+              alt=""
+            />
           </a>
           <a href="#" target="_blank" rel={"noreferrer"}>
-            <FaPhoneAlt id="phone" className="contactIcons"/>
+            <FaPhoneAlt id="phone" className="contactIcons" />
           </a>
           <a href="#" target="_blank" rel={"noreferrer"}>
-            <BsGithub className="contactIcons"/>
+            <BsGithub className="contactIcons" />
           </a>
         </div>
       </div>
     </section>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
-})
+  auth: state.auth,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   login: (data) => dispatch(loginUser(data)),
-  register: (data) => dispatch(registerUser(data))
-})
+  register: (data) => dispatch(registerUser(data)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);
