@@ -1,30 +1,25 @@
-import "./Flight.scss";
+import './Flight.scss';
+import {ProgressBar} from '../../Components'
+import FlightQuery from './FlightQuery';
+import FlightResults from './FlightResults';
+import { useState } from 'react';
 
-import { AiOutlineSearch } from "react-icons/ai";
-import { useState } from "react";
+const Flight = ()=>{
+    const [foundFlight, setFoundFlight]= useState(false);
+    const [flight, setFlight] = useState('');
 
-const Flight = () => {
-  const [flight, setFlight] = useState("");
-  return (
-    <section>
-      <h1 className="logo">
-        <img src="src/Resources/Images/logo.png" /> Radien
-      </h1>
+    return(
+        <section className='flightPage'>
+    
+            <h1 className='logo'><img src="src/Resources/Images/logo.png"/> Radien</h1>
+            {!foundFlight && <FlightQuery {...{flight, setFlight, setFoundFlight}}/>}
+            {foundFlight && <FlightResults {...{flight}}/>}
+            <img className='background' src="src/Resources/Images/background.svg"/>
+             <ProgressBar className="progress"/>
+        </section>
+    );
 
-      <div className="query">
-        <label>Find your Flight</label>
-        <div className="search">
-          <AiOutlineSearch />
-          <input
-            placeholder="Flight Number"
-            value={flight}
-            onChange={(e) => setFlight(e.target.value)}
-          />
-        </div>
-      </div>
-      <img className="background" src="src/Resources/Images/background.svg" />
-    </section>
-  );
+    
 };
 
 export default Flight;

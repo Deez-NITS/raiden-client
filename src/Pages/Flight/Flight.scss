@@ -1,63 +1,213 @@
-.logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    padding-top: 5%;
+@use 'src/color.scss';
+
+.flightPage{
+
+    .background{
+        transform: rotate(-90deg);
+        transform-origin: 76% 49%;
+        position: fixed;
+        z-index: -1;
+        width: 100vh;
+        right: 0;
+        top: 0;
+    }
     
-    img{
-        width:3.5rem;
-        margin-right: 1%;
-    }
-}
-
-.query{
-    position: fixed;
-    transform: translate(-50%, -50%);
-    top: 45%;
-    left: 50%;
-    padding: 2%;
-
-    label{
-        display: block;
-        margin-bottom: 5%;
-        font-size: 1.7rem;
-    }
-
-    .search{
+    .logo{
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 30rem;
-        height: 5rem;
-        border-radius: 1rem;
-        background-color: #ECF7FF;
-        border: 0;
-        outline: 0;
+        font-size: 3rem;
+        padding-top: 2%;
+        
+        img{
+            width:3.5rem;
+            margin-right: 1%;
+        }
+    }
 
-        svg{
-            font-size: 2.2rem;
-            width: 5rem;
+    .query{
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 45%;
+        left: 50%;
+        padding: 2%;
+
+        label{
+            display: block;
+            margin-bottom: 5%;
+            font-size: 1.7rem;
         }
 
-        input{
+        .search{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30rem;
             height: 5rem;
-            font-size: 1.8rem;
-            outline:0;
+            border-radius: 1rem;
+            background-color: #ECF7FF;
             border: 0;
-            background-color: #ecf7ff00;
+            outline: 0;
+
+            svg{
+                font-size: 2.2rem;
+                width: 5rem;
+            }
+
+            input{
+                height: 5rem;
+                font-size: 1.8rem;
+                outline:0;
+                border: 0;
+                background-color: #ecf7ff00;
+            }
+
+        }
+
+        .suggestions{
+            width: 90%;
+            max-height: 15rem;
+            position: absolute;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow-y: scroll;
+            // padding: 1rem;
+
+            span{
+                display: block;
+                // height: 2rem;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-bottom: 1px solid color.$text-lighter;
+                cursor: pointer;
+            }
+        }
+
+
+
+    }
+
+    #progressBar{
+        transform: translate(-50%, -50%);
+       left: 50%;
+       bottom: 10%;
+       z-index: -1;
+    }
+        
+
+
+    .searchResults{
+        position: fixed;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top:45%;
+        height: 25rem;
+        width: 50rem;
+        background-color: #DEDEDE;
+        border-radius: 30px;
+
+        .header{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 5rem;
+            padding: 4rem;
+            padding-bottom: 2rem;
+            h1{
+                font-size: 2rem;
+                color: color.$text-dark;
+            }
+
+            h3{
+                font-size: 1.5rem;
+                color:color.$text-light;
+            }
+        }
+
+        .airportList{
+            width: 90%;
+            margin-left: 5%;
+            height: 18rem;
+            overflow: scroll;
+
+            .airport{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                background-color: white;
+                height: 5rem;
+                margin-top: 1rem;
+                border-radius: 20px;
+                cursor: pointer;
+
+                .name{
+                    float: left;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    color:color.$text-blue;
+
+                    .rating{
+                        font-size: 1.5rem;
+                        font-weight: 800;
+                        color: color.$text-light;
+                        margin-left: 2rem;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        svg{
+                            color: color.$star;
+                        }
+                    }
+                }
+
+                
+
+                .code{
+                    color:color.$text-lighter;
+                    font-weight: 600;
+                    font-size: 1.3rem;
+                }
+
+            }
         }
 
     }
 
+    .dateSelect{
+        position: fixed;
+        transform: translate(0, -50%);
+        top:45%;
+        right: 5rem;
+        background-color: #DEDEDE;
+        padding: 1rem 0 1rem -1rem;
+        overflow: scroll;
+        height: 30rem;
+        border-radius: 40px;
+
+        .date{
+            width: 12rem;
+            height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            background-color: #98BFE2;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color:white;
+            box-shadow: 0 3px 4px 1px rgba(43, 43, 43, 0.326);
+            cursor: pointer;
+        }
+
+        .date[name=active]{
+            background-color: #244F90;
+        }
+    }
     
 }
-.background{
-    transform: rotate(-90deg);
-    transform-origin: 76% 49%;
-    position: fixed;
-    z-index: -1;
-    width: 100vh;
-    right: 0;
-    top: 0;
-}
+
