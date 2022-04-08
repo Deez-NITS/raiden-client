@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ProgressBar } from "../../Components";
+import { ItemList, ProgressBar } from "../../Components";
 import { AiFillStar } from "react-icons/ai"
 import "./Sellers.scss"
+import httpService from "../../Global/Services/httpService";
 
 const Sellers = () => {
 
   // const [sellers, setSellers] = useState([]);
+  // const params = useParams();
 
-  const params = useParams();
+  // const { airportId } = params;
+
+  // useEffect(() => {
+  //   (async (id) => {
+  //     httpService.get()
+  //   })(airportId)
+
+  // },[])
+
 
   const seller = {
     id: 1,
@@ -32,6 +42,8 @@ const Sellers = () => {
         </div>
         Raiden
       </h1>
+
+      <ItemList/>
 
       <div id="sellerListContainer">
         <h2 id="sellerListHeading" >{"blaze aa"}</h2>

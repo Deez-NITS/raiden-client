@@ -6,7 +6,15 @@ import { connect } from "react-redux";
 
 import { loadUser } from "./Global/Redux/Actions";
 import { Navbar, Footer, Loader } from "./Components";
-import { Auth, Register, Verify, Landing, Flight, Sellers } from "./Pages";
+import {
+  Auth,
+  Register,
+  Verify,
+  Landing,
+  Flight,
+  Sellers,
+  Cart,
+} from "./Pages";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
@@ -70,6 +78,8 @@ const App = ({ auth, alert, userLoad }) => {
             />
           </Fragment>
         )}
+
+        <Route path="/cart" element={<Cart />} />
         {auth.isAuthenticated ? (
           <Fragment>
             <Route path="/sellers/:airportId" element={<Sellers />} />

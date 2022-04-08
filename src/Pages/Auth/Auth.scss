@@ -14,7 +14,7 @@ form{
     
     position: fixed;
     z-index: 1;
-    height: 60%;
+    height: 30rem;
     width: 30rem;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -58,16 +58,38 @@ form{
         font-weight: 600;
     }
 
+    .selectLoginType{
+        display: flex;
+        justify-content: center;
+        margin-left: 0;
+        width: 10rem;
+        padding-left: 16rem;
+
+        button{
+            margin-top: 0;
+            margin-right: 2rem;
+            background-color: #E8E8E8;
+            color:color.$text-dark;
+        }
+
+        button[name=active]{
+            background-color: #145E75;
+            color: white;
+        }
+    }
+
+
     button{
         margin-top: 5%;
         margin-left: 40%;
     }
 
+
     span{
         display: block;
         width: 100%;
         text-align: center;
-        margin-top: 10%;
+        margin-top: 5%;
 
         a{
             text-decoration: none;
