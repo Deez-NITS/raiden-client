@@ -8,6 +8,17 @@ import { Button } from "../../Components";
 import "./Auth.scss";
 
 const Auth = ({ auth, login }) => {
+
+  const [loginType, setLoginType] = useState('user');
+  const handleSelectUser = (e)=>{
+      e.preventDefault();
+      setLoginType('user');
+  }
+  const handleSelectProvider = (e)=>{
+      e.preventDefault();
+      setLoginType('provider');
+  }
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,7 +36,7 @@ const Auth = ({ auth, login }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     //! SET TYPE
-    await login({ ...formData, type: "user" });
+    await login({ ...formData, type: loginType });
     navigate("/verify");
   };
 
@@ -53,6 +64,11 @@ const Auth = ({ auth, login }) => {
           onChange={handleFormInput}
           name="password"
         />
+        <div className="selectLoginType">
+          <button className="selectUser" name={loginType=='user'?'active':''} onClick={(e)=>handleSelectUser(e)}>User</button>
+          <button className="selectProvider" name={loginType=='provider'?'active':''} onClick={(e)=>handleSelectProvider(e)}>Provider</button>
+        </div>
+
         <Button className="login-button" label="Login" primary={true} />
         <span>
           not registered yet? <Link to="/register">Sign up</Link>
