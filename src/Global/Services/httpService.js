@@ -3,7 +3,7 @@ import axios from "axios";
 // Setting up base URL
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
-// Sending auth token with every requests
+// Middleware for every requests
 axios.interceptors.request.use(
   (request) => {
     request.withCredentials = true;

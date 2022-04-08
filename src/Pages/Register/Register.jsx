@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { registerUser } from "../../Global/Redux/Actions";
@@ -17,6 +17,8 @@ const Register = ({ auth, register }) => {
     email: "",
   });
 
+  const navigate = useNavigate();
+
   const handleFormInput = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -27,7 +29,9 @@ const Register = ({ auth, register }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const { confirmPassword, ...data } = formData;
-    register(data);
+    //! SET USER TYPE
+    register({ ...data, type: "user" });
+    navigate("/verify");
   };
 
   return (
