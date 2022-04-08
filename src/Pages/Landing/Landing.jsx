@@ -2,14 +2,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 
 import { connect } from "react-redux";
-import { loginUser, registerUser } from "../../Global/Redux/Actions";
 
 import { Button } from "../../Components";
 import "./Landing.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BsGithub } from "react-icons/bs";
 
-const Landing = ({ auth, login }) => {
+const Landing = ({ auth }) => {
   const [figures, setFigures] = useState({
     Happycustomers: 0,
     States: 0,
@@ -89,9 +88,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  login: (data) => dispatch(loginUser(data)),
-  register: (data) => dispatch(registerUser(data)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Landing);
+export default connect(mapStateToProps)(Landing);

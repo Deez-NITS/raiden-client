@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { loginUser } from "../../Global/Redux/Actions";
@@ -13,6 +13,8 @@ const Auth = ({ auth, login }) => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleFormInput = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -20,9 +22,11 @@ const Auth = ({ auth, login }) => {
     }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
+    //! SET TYPE
+    await login({ ...formData, type: "user" });
+    navigate("/verify");
   };
 
   return (

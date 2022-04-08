@@ -4,10 +4,10 @@ import authReducers from "../Reducers/auth";
 const authInitialState = {
   isAuthenticated: false,
   user: null,
-  token: localStorage.getItem("token"),
   loading: false,
   otpSent: false,
   otpVerified: false,
+  type: "user",
 };
 
 const authSlice = createSlice({
