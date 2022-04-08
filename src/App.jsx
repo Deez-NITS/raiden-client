@@ -1,19 +1,29 @@
 import { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { registerUser } from "./Global/Redux/Actions";
 
-import { Navbar, Footer } from "./Components";
-import { Auth, Home, Register, Verify, Landing, Flight} from "./Pages";
+import { Navbar, Footer, Loader } from "./Components";
+import {
+  Auth,
+  Home,
+  Register,
+  Verify,
+  Landing,
+  Flight,
+  Sellers,
+} from "./Pages";
 
 import "./App.scss";
 
-const App = ({ auth, registerUser }) => {
+const App = ({ auth }) => {
   console.log(auth);
 
   const isLoggedIn = true;
-  // const isLoggedIn = auth.isAuthenticated;
+
+  if (auth.loading) {
+    return <Loader />;
+  }
 
   return (
     <Fragment>
@@ -21,11 +31,19 @@ const App = ({ auth, registerUser }) => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/login" element={<Auth />} />
-        <Route path="/register" element={<Register />} />
+        {!auth.isAuthenticated ? (
+          <Route path="/login" element={<Auth />} />
+        ) : (
+          <Route path="/login" element={<Navigate replace to={"/home"} />} />
+        )}
+        {!auth.isAuthenticated ? (
+          <Route path="/register" element={<Register />} />
+        ) : (
+          <Route path="/register" element={<Navigate replace to={"/home"} />} />
+        )}
         <Route path="/verify" element={<Verify />} />
-        <Route path="/Flight" element={<Flight />} />
+        <Route path="/sellers/:airportId" element={<Sellers />} />
+        <Route path="/flight" element={<Flight />} />
       </Routes>
       <Footer />
     </Fragment>
@@ -36,8 +54,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  registerUser: (user) => dispatch(registerUser(user)),
-});
+// const mapDispatchToProps = (dispatch) => {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

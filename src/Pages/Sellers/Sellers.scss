@@ -1,0 +1,99 @@
+@use "/src/color.scss";
+
+#seller{
+  #heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8rem;
+    font-size: 3rem;
+
+    #logoWrapper{
+      height: 4rem;
+      margin: 0 1rem;
+      img{
+        height: 100%;
+      }
+    }
+  }
+
+  #sellerListContainer{
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    max-width: 90rem;
+    
+    h2#sellerListHeading{
+      text-align: right;
+      padding: 1rem 2rem;
+      font-size: 2rem;
+    }
+
+    #sellerList{
+      padding: 0.1rem 1rem;
+      background-color: color.$bg-secondary;
+      border-radius: 1rem;
+      height: 23rem;
+
+      overflow-y: scroll;
+
+      .seller{
+        display: flex;
+        height: 10rem;
+        box-shadow: 0rem 0.1rem 0.2rem 0.1rem rgba(0, 0, 0, 0.25);
+        margin: 1rem 0;
+        border-radius: 1rem;
+        background-color: color.$bg-primary;
+        padding: 1rem;
+
+        .sellerImage{
+          width: 8rem;
+          border: 0.001rem rgb(0, 0, 0, 0.25) solid;
+          overflow: hidden;
+          flex-shrink: 0;
+          object-fit: cover;
+          border-radius: 1rem;
+          img{
+            width: 100%;
+          }
+        }
+
+        .sellerInfo{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          padding: 0 1rem;
+          font-size: 1.2rem;
+          flex-grow: 1;
+
+          .sellerName{
+            font-size: 2rem;
+            font-weight: bold;
+          }
+          
+          .sellerDescription{
+            word-wrap: break-word;
+            max-height: 2rem;
+            overflow-y: hidden;
+            line-height: 1rem;
+            margin-bottom: auto;
+          }
+
+        }
+        .sellerRating{
+          display: flex;
+          align-items: center;
+          font-size: 1.5rem;
+          .starIcon{
+            font-size: 2rem;
+            color: color.$star;
+          }
+        }
+      }
+    }
+  }
+
+  #progressBar{
+    left: 50%;
+    transform: translate(-50%,0);
+  }
+}
