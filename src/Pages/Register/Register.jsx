@@ -8,16 +8,15 @@ import { Button } from "../../Components";
 import "./Register.scss";
 
 const Register = ({ auth, register }) => {
-  const [registerType, setRegisterType] = useState('user');
-  const handleSelectUser = (e)=>{
-      e.preventDefault();
-      setRegisterType('user');
-  }
-  const handleSelectProvider = (e)=>{
-      e.preventDefault();
-      setRegisterType('provider');
-  }
-
+  const [registerType, setRegisterType] = useState("user");
+  const handleSelectUser = (e) => {
+    e.preventDefault();
+    setRegisterType("user");
+  };
+  const handleSelectProvider = (e) => {
+    e.preventDefault();
+    setRegisterType("provider");
+  };
 
   const [formData, setFormData] = useState({
     name: "",
@@ -26,6 +25,8 @@ const Register = ({ auth, register }) => {
     confirmPassword: "",
     dob: "",
     email: "",
+    gstin: "",
+    airportCode: "",
   });
 
   const navigate = useNavigate();
@@ -90,6 +91,28 @@ const Register = ({ auth, register }) => {
             name="phoneNumber"
           />
         </label>
+        {registerType === "provider" && (
+          <>
+            <label>
+              GSTIN Number
+              <input
+                placeholder="GSTIN"
+                value={formData.gstin}
+                onChange={handleFormInput}
+                name="gstin"
+              />
+            </label>
+            <label>
+              Airport Code
+              <input
+                placeholder="Airport Code"
+                value={formData.airportCode}
+                onChange={handleFormInput}
+                name="airportCode"
+              />
+            </label>
+          </>
+        )}
         <label>
           Password
           <input
@@ -111,8 +134,18 @@ const Register = ({ auth, register }) => {
           />
         </label>
         <div className="selectRegisterType">
-          <button className="selectUser" name={registerType=='user'?'active':''} onClick={(e)=>handleSelectUser(e)}>User</button>
-          <button className="selectProvider" name={registerType=='provider'?'active':''} onClick={(e)=>handleSelectProvider(e)}>Provider</button>
+          <button
+            className="selectUser"
+            name={registerType == "user" ? "active" : ""}
+            onClick={(e) => handleSelectUser(e)}>
+            User
+          </button>
+          <button
+            className="selectProvider"
+            name={registerType == "provider" ? "active" : ""}
+            onClick={(e) => handleSelectProvider(e)}>
+            Provider
+          </button>
         </div>
 
         <Button className="register-button" label="Sign up" primary={true} />
