@@ -8,16 +8,15 @@ import { Button } from "../../Components";
 import "./Auth.scss";
 
 const Auth = ({ auth, login }) => {
-
-  const [loginType, setLoginType] = useState('user');
-  const handleSelectUser = (e)=>{
-      e.preventDefault();
-      setLoginType('user');
-  }
-  const handleSelectProvider = (e)=>{
-      e.preventDefault();
-      setLoginType('provider');
-  }
+  const [loginType, setLoginType] = useState("user");
+  const handleSelectUser = (e) => {
+    e.preventDefault();
+    setLoginType("user");
+  };
+  const handleSelectProvider = (e) => {
+    e.preventDefault();
+    setLoginType("provider");
+  };
 
   const [formData, setFormData] = useState({
     email: "",
@@ -42,10 +41,10 @@ const Auth = ({ auth, login }) => {
 
   return (
     <section className="authPage">
-      <img src={"src/Resources/Images/background.svg"} className="background" />
+      <img src={"/img/background.svg"} className="background" />
       <form onSubmit={handleFormSubmit}>
         <h1>
-          <img src={"src/Resources/Images/logo.png"} />
+          <img src={"/img/logo.png"} />
           Raiden
         </h1>
         <label>Email</label>
@@ -65,8 +64,18 @@ const Auth = ({ auth, login }) => {
           name="password"
         />
         <div className="selectLoginType">
-          <button className="selectUser" name={loginType=='user'?'active':''} onClick={(e)=>handleSelectUser(e)}>User</button>
-          <button className="selectProvider" name={loginType=='provider'?'active':''} onClick={(e)=>handleSelectProvider(e)}>Provider</button>
+          <button
+            className="selectUser"
+            name={loginType == "user" ? "active" : ""}
+            onClick={(e) => handleSelectUser(e)}>
+            User
+          </button>
+          <button
+            className="selectProvider"
+            name={loginType == "provider" ? "active" : ""}
+            onClick={(e) => handleSelectProvider(e)}>
+            Provider
+          </button>
         </div>
 
         <Button className="login-button" label="Login" primary={true} />

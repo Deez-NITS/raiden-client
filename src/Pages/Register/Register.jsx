@@ -48,10 +48,10 @@ const Register = ({ auth, register }) => {
 
   return (
     <section className="regPage">
-      <img src={"src/Resources/Images/background.svg"} className="background" />
+      <img src={"/img/background.svg"} className="background" />
       <form onSubmit={handleFormSubmit}>
         <h1>
-          <img src={"src/Resources/Images/logo.png"} />
+          <img src={"/img/logo.png"} />
           Raiden
         </h1>
         <label>
