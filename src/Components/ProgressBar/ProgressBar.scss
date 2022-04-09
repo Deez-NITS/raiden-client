@@ -1,0 +1,24 @@
+@use "/src/color.scss";
+
+#progressBar{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 0.15rem solid color.$text-blue;
+
+  .progressStage{
+    font-size: 3rem;
+    background-color: color.$bg-primary;
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    color: color.$text-blue;
+  }
+
+  .progressStage.active{
+    color: color.$bg-primary;
+    background-color: color.$text-blue;
+  }
+}

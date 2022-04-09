@@ -2,10 +2,11 @@
  * @typedef {{
  *      isAuthenticated: boolean;
  *      user: Object;
- *      token: string;
  *      loading: boolean;
  *      otpSent: boolean;
  *      otpVerified: boolean;
+ *      type: "user" | "provider";
+ *      fetched: boolean;
  *    }} authState
  *
  * @typedef {{
@@ -33,13 +34,13 @@ const login = (state) => ({
  * @returns {authState}
  */
 const loginSuccess = (state, action) => {
-  localStorage.setItem("token", action.payload.token);
   return {
     ...state,
     isAuthenticated: true,
     user: action.payload,
     loading: false,
-    token: action.payload.token,
+    otpVerified: action.payload.verified ?? false,
+    type: action.payload.type,
   };
 };
 
@@ -50,10 +51,27 @@ const loginSuccess = (state, action) => {
  * @returns {authState}
  */
 const loginFailure = (state) => {
-  localStorage.removeItem("token");
   return {
     ...state,
     loading: false,
+  };
+};
+
+/**
+ * @param { authState } state
+ * @param { actionType } action
+ *
+ * @returns {authState}
+ */
+const registrationSuccess = (state, action) => {
+  console.log(action);
+  return {
+    ...state,
+    isAuthenticated: false,
+    user: action.payload,
+    loading: false,
+    otpVerified: false,
+    type: action.payload.type,
   };
 };
 
@@ -75,13 +93,14 @@ const logout = (state) => ({
  * @returns {authState}
  */
 const logoutSuccess = (state) => {
-  localStorage.removeItem("token");
   return {
     ...state,
     isAuthenticated: false,
     user: null,
     loading: false,
-    token: null,
+    otpVerified: false,
+    type: "",
+    fetched: false,
   };
 };
 
@@ -183,13 +202,14 @@ const userLoading = (state) => ({
  * @returns {authState}
  */
 const userLoadingSuccess = (state, action) => {
-  localStorage.setItem("token", action.payload.token);
   return {
     ...state,
     isAuthenticated: true,
     user: action.payload,
     loading: false,
-    token: action.payload.token,
+    otpVerified: action.payload.verified,
+    type: action.payload.role,
+    fetched: true,
   };
 };
 
@@ -204,10 +224,11 @@ const userLoadingFailure = (state) => ({
   loading: false,
 });
 
-export {
+export default {
   login,
   loginSuccess,
   loginFailure,
+  registrationSuccess,
   logout,
   logoutSuccess,
   logoutFailure,

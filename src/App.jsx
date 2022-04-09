@@ -1,26 +1,93 @@
-import { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Fragment, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 import { connect } from "react-redux";
-import { registerUser } from "./Global/Redux/Actions";
 
-import { Navbar, Footer } from "./Components";
-import { Auth, Home } from "./Pages";
+import { loadUser } from "./Global/Redux/Actions";
+import { Navbar, Footer, Loader } from "./Components";
+import {
+  Auth,
+  Register,
+  Verify,
+  Landing,
+  Flight,
+  Sellers,
+  Cart,
+} from "./Pages";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 
-const App = ({ auth, registerUser }) => {
+let fetched = false;
+
+const App = ({ auth, alert, userLoad }) => {
+  const isLoggedIn = true;
+
   console.log(auth);
 
-  const isLoggedIn = true;
-  // const isLoggedIn = auth.isAuthenticated;
+  if (auth.loading) {
+    return <Loader />;
+  }
+
+  useEffect(() => {
+    console.log(alert);
+    if (alert.length) {
+      alert.forEach((alt) => {
+        if (alt.type === "danger") {
+          toast.error(alt.message, { autoClose: 5000 });
+        } else {
+          toast.success(alt.message, { autoClose: 5000 });
+        }
+      });
+    }
+  }, [alert]);
+
+  useEffect(() => {
+    if (!fetched) {
+      fetched = !fetched;
+      userLoad();
+    }
+  }, []);
 
   return (
     <Fragment>
       {isLoggedIn && <Navbar />}
+      <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/" element={<Landing />} />
+        {!auth.isAuthenticated || !auth.otpVerified ? (
+          <Fragment>
+            <Route path="/login" element={<Auth />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/verify" element={<Verify />} />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <Route
+              path="/login"
+              element={<Navigate replace to={"/flight"} />}
+            />
+            <Route
+              path="/register"
+              element={<Navigate replace to={"/flight"} />}
+            />
+            <Route
+              path="/verify"
+              element={<Navigate replace to={"/flight"} />}
+            />
+          </Fragment>
+        )}
+
+        <Route path="/cart" element={<Cart />} />
+        {auth.isAuthenticated ? (
+          <Fragment>
+            <Route path="/sellers/:airportId" element={<Sellers />} />
+            <Route path="/flight" element={<Flight />} />
+          </Fragment>
+        ) : (
+          <Route path="*" element={<Navigate replace to={"/"} />} />
+        )}
       </Routes>
       <Footer />
     </Fragment>
@@ -29,10 +96,11 @@ const App = ({ auth, registerUser }) => {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  alert: state.alert,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  registerUser: (user) => dispatch(registerUser(user)),
+  userLoad: () => dispatch(loadUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
