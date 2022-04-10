@@ -8,11 +8,15 @@ import store from "./Global/Redux/store";
 import "./index.css";
 import App from "./App";
 
+import {OrderItemsProvider } from "./Global/Context/OrderItems"
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <OrderItemsProvider>
+          <App />
+        </OrderItemsProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

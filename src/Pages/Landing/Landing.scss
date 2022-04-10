@@ -107,10 +107,11 @@
 
     #contacts{
       position: absolute;
-      bottom: 5rem;
-      right: 5rem;
-      height: 5rem;
-      width: 25rem;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      height: 10rem;
+      width: 50rem;
       border-radius: 1rem;
       display: flex;
       align-items: center;
@@ -119,11 +120,12 @@
       background-color: color.$bg-primary;
 
       #contactHeading{
-        font-size: 1.5rem ;
+        font-size: 3rem ;
       }
 
       .contactIcons{
-        font-size: 2rem;
+        width: 5rem;
+        font-size: 4rem;
         color: black;
       }
       #phone{

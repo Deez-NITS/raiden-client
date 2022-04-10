@@ -1,16 +1,34 @@
 import { Button } from "../../Components";
+import { useOrder } from "../../Global/Context/OrderItems";
 import "./Cart.scss";
 
 const Cart = () => {
-  const item = {
-    id: 1223,
-    price: 23,
-    name: "chicken",
-    img: "/img/logo.png",
-    description: "chicken",
-  };
 
-  const items = [item, item, item];
+  const [items, setItems] = useOrder();
+
+  // const item = {
+  //   id: 1223,
+  //   price: 23,
+  //   name: "chicken",
+  //   img: "/img/logo.png",
+  //   description: "chicken",
+  // };
+
+  // const items = [item, item, item];
+
+  const handleRemove = (id) => {
+    setItems((prev) => {
+      return prev.filter((elem) => {
+          return elem.id!==id;
+      })
+    });
+  }
+
+  const placeOrder =() => {
+    const ids = items.map((elem) => elem.id);
+    
+    setItems([]);
+  }
 
   return (
     <section id="cart">
@@ -34,14 +52,14 @@ const Cart = () => {
               <div className="itemDescription">{elem.description}</div>
             </div>
             <div className="itemActions">
-              <Button label={"Remove"} />
+              <Button onClick={() => handleRemove(elem.id)} label={"Remove"} />
             </div>
           </div>
         ))}
       </div>
 
       <div id="placeOrderActions">
-        <Button primary={true} label={"Place Order"} />
+        <Button onClick={placeOrder} primary={true} label={"Place Order"} />
       </div>
     </section>
   );

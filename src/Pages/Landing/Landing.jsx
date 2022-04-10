@@ -54,7 +54,7 @@ const Landing = ({ auth }) => {
       <div id="lowerSection">
         <img src={"/img/background.svg"} id="background" />
 
-        <div id="sponsorsContainer">
+        {/* <div id="sponsorsContainer">
           {sponsors.map((elem) => (
             <div className="sponsor" key={elem}>
               <a href={elem}>
@@ -62,7 +62,7 @@ const Landing = ({ auth }) => {
               </a>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div id="contacts">
           <div id="contactHeading">Contact us</div>

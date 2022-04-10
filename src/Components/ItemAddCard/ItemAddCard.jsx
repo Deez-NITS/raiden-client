@@ -3,8 +3,12 @@ import "./ItemAddCard.scss";
 import { MdOutlineClose } from "react-icons/md"
 import Counter from "../Counter/Counter";
 import { useState } from "react";
+import { connect } from "react-redux";
+import { useOrder } from "../../Global/Context/OrderItems";
 
-const ItemAddCard = ({selectedItem, setSelectedItem}) => {
+const ItemAddCard = ({selectedItem, setSelectedItem }) => {
+
+  const [items,setItems] = useOrder();
 
   const [quantity,setQuantity] = useState(1);
 
@@ -12,17 +16,22 @@ const ItemAddCard = ({selectedItem, setSelectedItem}) => {
     setSelectedItem(null);
   }
 
-  const handleAdd = () => {
-    console.log("asdf")
-  }
+  const handleAdd = (item) => {
+    const data = {
+      name: selectedItem.name,
+      providerId: selectedItem.providerId,
+      img: selectedItem.img,
+      id: selectedItem.id,
+      description: selectedItem.description,
+      price: selectedItem.price,
+      quantity: quantity,
+    }
+    setItems((prev) => {
+      return [...prev, data];
+    })
 
-  const item = {
-    id: 1223,
-    price: 23,
-    name: "chicken",
-    img: "/img/logo.png",
-    description: "chicken",
-  };
+    setSelectedItem(null);
+  }
 
   return (
     <div id="itemAddCard">
@@ -40,7 +49,7 @@ const ItemAddCard = ({selectedItem, setSelectedItem}) => {
       </div>
       <div id="addBtnContainer">
         <div>{"Total: " + (selectedItem.price * quantity)}</div>
-        <Button primary={true} label={"add"} />
+        <Button primary={true} label={"add"} onClick={() => handleAdd(selectedItem)} />
       </div>
     </div>
   );

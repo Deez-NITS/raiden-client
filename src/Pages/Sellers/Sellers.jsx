@@ -44,7 +44,7 @@ const Sellers = () => {
       {currSeller && <ItemList setCurrSeller={setCurrSeller} currSeller={currSeller} />}
 
       <div id="sellerListContainer">
-        <h2 id="sellerListHeading">{"blaze aa"}</h2>
+        <h2 id="sellerListHeading">{}</h2>
         <div id="sellerList">
           {
             sellers.map((elem) => (

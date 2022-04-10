@@ -2,10 +2,11 @@
  * @typedef {[{
  *      items: [{
  *        id: number;
- *        provider: number;
+ *        providerId: number;
  *        name: string;
  *        description: string;
  *        price: number;
+ *        img: string;
  *        quantity: number;
  *      }];
  *      totalQuantity: number;
@@ -26,7 +27,7 @@
  */
 const addToCart = (state, action) => {
   const userItem = action.payload;
-
+  console.log(state.items);
   const updatedItems = [];
 
   const foundItem = state.items.find((item) => item.id === userItem.id);

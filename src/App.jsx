@@ -79,10 +79,10 @@ const App = ({ auth, alert, userLoad }) => {
         )}
 
         <Route path="/cart" element={<Cart />} />
+        <Route path="/sellers/:airportId" element={<Sellers />} />
+        <Route path="/flight" element={<Flight />} />
         {auth.isAuthenticated ? (
           <Fragment>
-            <Route path="/sellers/:airportId" element={<Sellers />} />
-            <Route path="/flight" element={<Flight />} />
           </Fragment>
         ) : (
           <Route path="*" element={<Navigate replace to={"/"} />} />
