@@ -39,6 +39,8 @@ const Navbar = ({ auth, logout }) => {
           }}
         />
       )}
+
+      <Link to="/flight">Search Flights</Link>
       <Link to="#">Orders</Link>
       <Link to="#">Profile</Link>
       <Link to="#">Contact Us</Link>

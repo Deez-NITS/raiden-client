@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
+import httpService from "../../Global/Services/httpService";
 import AirportPopup from './AirportPopup';
 
 const FlightResults = ({flight})=>{
@@ -33,13 +34,12 @@ const FlightResults = ({flight})=>{
 
 
     useEffect(()=>{
-        fetch('http://localhost:5000/api/v1/airport/1').then(response => response.json()).then(s=>setSource(s.message));
-        fetch('http://localhost:5000/api/v1/airport/2').then(response => response.json()).then(s=>setDestination(s.message));
+        httpService.get('/airport/1').then(s=>setSource(s.data.message));
+        httpService.get('/airport/2').then(s=>setDestination(s.data.message));
           
-        fetch('http://localhost:5000/api/v1/flight/1')
-        .then(response => response.json())
+        httpService.get('/flight/1')
         .then(fl => {
-            setFlightObj(fl.message);
+            setFlightObj(fl.data.message);
         });
     }, [flight])
     
