@@ -14,9 +14,10 @@ const FlightResults = ({flight})=>{
     const [airportType, setAirportType] = useState('');
     
     const [activeAirport, setActiveAirport] = useState(null);
-    for(let i=0, date = new Date();i<15;i++){
+    for(let i=0;i<15;i++){
+        const date = new Date();
+        date.setDate(date.getDate() + i);
         dates.push({date:date.getDate(), month:monthNames[date.getMonth()], active:false, dateObj:date});
-        date.setDate(date.getDate() + 1);
     }
 
   
@@ -40,8 +41,8 @@ const FlightResults = ({flight})=>{
         "id": 1,
         "company": "BiJet",
         "flightNumber": "SX-345",
-        "startTime": "2022-04-10T18:24:00.000Z",
-        "endTime": "2022-04-10T19:10:00.000Z",
+        "startTime": "2022-04-10T05:52:58.832Z",
+        "endTime": "2022-04-10T05:52:58.832Z",
         "sourceCode": "GHY",
         "destinationCode": "GHH"
 
@@ -52,9 +53,14 @@ const FlightResults = ({flight})=>{
         httpService.get('/airport/code/' + flightObj.sourceCode).then(s=>setSource(s.data.message));
         httpService.get('/airport/code/' + flightObj.destinationCode).then(s=>setDestination(s.data.message));
           
-        httpService.get('/flight/1')
+        httpService.post('/flight', {
+            flightNumber:flight,
+            startTime:dates[activeDate].dateObj.getTime()
+        })
         .then(fl => {
             setFlightObj(fl.data.message);
+            // console.log(dates[activeDate].dateObj.toISOString());
+            // console.log(fl.data);
         });
     }, [flight, activeDate])
     

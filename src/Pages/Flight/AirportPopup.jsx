@@ -12,8 +12,9 @@ const AirportPopup = ({
   flightObj
 }) => {
 
-  const sDate = new Date(flightObj.startTime);
-  const eDate = new Date(flightObj.endTime);
+  console.log(flightObj)
+  const sDate = flightObj? new Date(flightObj.startTime): new Date();
+  const eDate = flightObj? new Date(flightObj.endTime) : new Date();
 
   const navigate = useNavigate();
   const handleSelect = ()=>{
@@ -38,12 +39,12 @@ const AirportPopup = ({
           <div className="details">
             {airportType == "source" && (
               <span className="time">
-                Departure: <span>{sDate.getHours()}:{sDate.getMinutes()}</span>
+                Departure: {flightObj ? (<span>{sDate.getHours()}:{sDate.getMinutes()}</span> ) : "no flight"}
               </span>
             )}
             {airportType == "destination" && (
               <span className="time">
-                Arrival: <span>{eDate.getHours()}:{eDate.getMinutes()}</span>
+                Arrival:  {flightObj? (<span>{eDate.getHours()}:{eDate.getMinutes()}</span>)  : "no flight"}
               </span>
             )}
           </div>
