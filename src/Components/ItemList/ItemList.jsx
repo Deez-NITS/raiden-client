@@ -46,7 +46,7 @@ const ItemList = ({currSeller, setCurrSeller}) => {
 
   
 
-  return (  
+  return (
     <section id="items">
       <div id="sellerContainer">
         <div id="sellerDetails">
@@ -58,7 +58,7 @@ const ItemList = ({currSeller, setCurrSeller}) => {
             <div id="sellerDescription">{currSeller.description}</div>
           </div>
         </div>
-        <MdOutlineClose id="closeBtn" onClick={handleClose}/>
+        <MdOutlineClose id="closeBtn" onClick={handleClose} />
       </div>
 
       <div id="itemList">
@@ -75,9 +75,12 @@ const ItemList = ({currSeller, setCurrSeller}) => {
                   <Button label={"add"}/>
                 </div>
               </div>
+              <div className="itemRating">
+                4.6
+                <AiFillStar className="starIcon" />
+              </div>
             </div>
-          ))
-        }
+        ))}
       </div>
 
       {selectedItem && <div id="itemAddCardContainer">
@@ -86,6 +89,6 @@ const ItemList = ({currSeller, setCurrSeller}) => {
 
     </section>
   );
-}
+};
 
 export default ItemList;

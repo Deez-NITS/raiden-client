@@ -20,11 +20,11 @@ const ItemAddCard = ({selectedItem, setSelectedItem}) => {
     id: 1223,
     price: 23,
     name: "chicken",
-    img: "/src/Resources/Images/logo.png",
-    description: "chicken", 
-  }
+    img: "/img/logo.png",
+    description: "chicken",
+  };
 
-  return (  
+  return (
     <div id="itemAddCard">
       <MdOutlineClose onClick={handleClose} id="closeBtn"/>
       <div id="itemDetails">
@@ -44,5 +44,5 @@ const ItemAddCard = ({selectedItem, setSelectedItem}) => {
       </div>
     </div>
   );
-}
+};
 export default ItemAddCard;

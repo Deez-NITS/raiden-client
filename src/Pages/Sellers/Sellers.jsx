@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ItemList, ProgressBar } from "../../Components";
-import { AiFillStar } from "react-icons/ai"
-import "./Sellers.scss"
+import { AiFillStar } from "react-icons/ai";
+import "./Sellers.scss";
 import httpService from "../../Global/Services/httpService";
 
 const Sellers = () => {
@@ -32,11 +32,11 @@ const Sellers = () => {
     setCurrSeller(seller);
   }
 
-  return (  
+  return (
     <section id="seller">
       <h1 id="heading">
         <div id="logoWrapper">
-          <img src="/src/Resources/Images/logo.png" alt="" />
+          <img src="img/logo.png" alt="" />
         </div>
         Raiden
       </h1>
@@ -44,7 +44,7 @@ const Sellers = () => {
       {currSeller && <ItemList setCurrSeller={setCurrSeller} currSeller={currSeller} />}
 
       <div id="sellerListContainer">
-        <h2 id="sellerListHeading" >{"blaze aa"}</h2>
+        <h2 id="sellerListHeading">{"blaze aa"}</h2>
         <div id="sellerList">
           {
             sellers.map((elem) => (
@@ -60,17 +60,15 @@ const Sellers = () => {
                   </div>
                 </div>
                 <div className="sellerRating">
-
                   <AiFillStar className="starIcon"/>
                 </div>
               </div>
-            ))
-          }
+          ))}
         </div>
       </div>
       <ProgressBar stage={2}/>
     </section>
   );
-}
+};
 
 export default Sellers;

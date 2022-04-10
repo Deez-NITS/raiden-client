@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import AirportPopup from './AirportPopup';
 
@@ -7,24 +7,42 @@ const FlightResults = ({flight})=>{
         "July", "August", "September", "October", "November", "December"
     ];
 
-    const airports = {
-        source:
-        {
-            name:"Blaze Airport",
-            rating:"5",
-            code:"GHY",
-            place:'KL Road, Guwahati',
-        },
-        destination:
-        {
-            name:"Tankapur National Airport",
-            rating:"3",
-            code:"GHY",
-            place:'BD Road, Guwahati'
-            
-        },
+    const [source, setSource] = useState({
+        "id": 1,
+        "name": "Source Airport",
+        "code": "GHY",
+        "place": "KL Road, Guwahati"
+    });
+    const [destination, setDestination] = useState({
+        "id": 2,
+        "name": "Destination Airport",
+        "code": "GHH",
+        "place": "BD Road, Guwahati"
+    });
+
+    const [flightObj, setFlightObj] = useState({
+        "id": 1,
+        "company": "BiJet",
+        "flightNumber": "SX-345",
+        "startTime": "2022-04-10T18:24:00.000Z",
+        "endTime": "2022-04-10T19:10:00.000Z",
+        "sourceCode": "GHY",
+        "destinationCode": "GHH"
+
+    })
+
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/api/v1/airport/1').then(response => response.json()).then(s=>setSource(s.message));
+        fetch('http://localhost:5000/api/v1/airport/2').then(response => response.json()).then(s=>setDestination(s.message));
+          
+        fetch('http://localhost:5000/api/v1/flight/1')
+        .then(response => response.json())
+        .then(fl => {
+            setFlightObj(fl.message);
+        });
+    }, [flight])
     
-    }
 
     const [airportType, setAirportType] = useState('');
     
@@ -49,29 +67,29 @@ const FlightResults = ({flight})=>{
                 </div>
 
                 <div className="airportList">
-                            <div className="airport"  onClick={()=>{setActiveAirport(airports.source);setAirportType('source');}}>
+                            <div className="airport"  onClick={()=>{setActiveAirport(source);setAirportType('source');}}>
                                 <span className="name">
-                                {airports.source.name}
+                                {source.name}
                                 <span className="rating">
-                                <AiFillStar/> {airports.source.rating}
+                                {/* <AiFillStar/> {airports.source.rating} */}
                                 </span>
                                 </span>
                             
                                 <span className="code">
-                                Code: {airports.source.code}
+                                Code: {source.code}
                                 </span>
                         
                             </div>
-                            <div className="airport"  onClick={()=>{setActiveAirport(airports.destination);setAirportType('destination');}}>
+                            <div className="airport"  onClick={()=>{setActiveAirport(destination);setAirportType('destination');}}>
                                 <span className="name">
-                                {airports.destination.name}
+                                {destination.name}
                                 <span className="rating">
-                                <AiFillStar/> {airports.destination.rating}
+                                {/* <AiFillStar/> {airports.destination.rating} */}
                                 </span>
                                 </span>
                             
                                 <span className="code">
-                                Code: {airports.destination.code}
+                                Code: {destination.code}
                                 </span>
                         
                             </div>
@@ -87,7 +105,7 @@ const FlightResults = ({flight})=>{
                     )
                 })}
             </div>
-            {(activeAirport!=null) && <AirportPopup {...{airport:activeAirport, setActiveAirport, flight, activeDate, airportType}}/>}
+            {(activeAirport!=null) && <AirportPopup {...{airport:activeAirport, setActiveAirport, flight, activeDate, airportType, flightObj}}/>}
         </>
     )
 }

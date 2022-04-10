@@ -22,7 +22,6 @@ import "./App.scss";
 let fetched = false;
 
 const App = ({ auth, alert, userLoad }) => {
-  const isLoggedIn = true;
 
   console.log(auth);
 
@@ -52,7 +51,7 @@ const App = ({ auth, alert, userLoad }) => {
 
   return (
     <Fragment>
-      {isLoggedIn && <Navbar />}
+      {auth.isAuthenticated && <Navbar />}
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Landing />} />

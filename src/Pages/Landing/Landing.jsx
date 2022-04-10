@@ -39,7 +39,7 @@ const Landing = ({ auth }) => {
       )}
 
       <div id="upperSection">
-        <img src={"src/Resources/Images/background.svg"} id="background" />
+        <img src={"/img/background.svg"} id="background" />
         <div id="subHeading">Make your meals wait for you</div>
 
         <div id="figuresContainer">
@@ -52,7 +52,7 @@ const Landing = ({ auth }) => {
         </div>
       </div>
       <div id="lowerSection">
-        <img src={"src/Resources/Images/background.svg"} id="background" />
+        <img src={"/img/background.svg"} id="background" />
 
         <div id="sponsorsContainer">
           {sponsors.map((elem) => (
@@ -67,11 +67,7 @@ const Landing = ({ auth }) => {
         <div id="contacts">
           <div id="contactHeading">Contact us</div>
           <a href="#" target="_blank" rel={"noreferrer"}>
-            <img
-              className="contactIcons"
-              src="/src/Resources/Images/gmailLogo.png"
-              alt=""
-            />
+            <img className="contactIcons" src="/img/gmailLogo.png" alt="" />
           </a>
           <a href="#" target="_blank" rel={"noreferrer"}>
             <FaPhoneAlt id="phone" className="contactIcons" />

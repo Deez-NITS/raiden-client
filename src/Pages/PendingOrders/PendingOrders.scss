@@ -1,0 +1,58 @@
+.pendingOrdersPage{
+    .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        padding-top: 2%;
+        
+        img{
+            width:3.5rem;
+            margin-right: 1%;
+        }
+    }
+
+    .orderList{
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        height: 30rem;
+        width: 60rem;
+
+        .order{
+            background-color: #F0F0F0;
+            height:10rem;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            padding-left: 2rem;
+            padding-right: 2rem;
+
+            img{
+                height: 8rem;
+                width: 8rem;
+                border-radius: 1.5rem;
+            }
+
+            .name{
+                font-size: 3rem;
+                font-weight: 600;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                margin-left: 2rem;
+
+                button{
+                    font-size: 1.5rem;
+                    padding: 1rem 1.2rem 1rem 1.2rem;
+                    border-radius: 2rem;
+                }
+            }
+
+        }
+    }
+}

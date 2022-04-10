@@ -8,6 +8,16 @@ import { Button } from "../../Components";
 import "./Register.scss";
 
 const Register = ({ auth, register }) => {
+  const [registerType, setRegisterType] = useState("user");
+  const handleSelectUser = (e) => {
+    e.preventDefault();
+    setRegisterType("user");
+  };
+  const handleSelectProvider = (e) => {
+    e.preventDefault();
+    setRegisterType("provider");
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
@@ -15,6 +25,8 @@ const Register = ({ auth, register }) => {
     confirmPassword: "",
     dob: "",
     email: "",
+    gstin: "",
+    airportCode: "",
   });
 
   const navigate = useNavigate();
@@ -30,16 +42,16 @@ const Register = ({ auth, register }) => {
     e.preventDefault();
     const { confirmPassword, ...data } = formData;
     //! SET USER TYPE
-    register({ ...data, type: "user" });
+    register({ ...data, type: registerType });
     navigate("/verify");
   };
 
   return (
     <section className="regPage">
-      <img src={"src/Resources/Images/background.svg"} className="background" />
+      <img src={"/img/background.svg"} className="background" />
       <form onSubmit={handleFormSubmit}>
         <h1>
-          <img src={"src/Resources/Images/logo.png"} />
+          <img src={"/img/logo.png"} />
           Raiden
         </h1>
         <label>
@@ -52,7 +64,7 @@ const Register = ({ auth, register }) => {
           />
         </label>
         <label>
-          Last Name
+          Date of Birth
           <input
             placeholder="Your DOB"
             type={"date"}
@@ -79,6 +91,28 @@ const Register = ({ auth, register }) => {
             name="phoneNumber"
           />
         </label>
+        {registerType === "provider" && (
+          <>
+            <label>
+              GSTIN Number
+              <input
+                placeholder="GSTIN"
+                value={formData.gstin}
+                onChange={handleFormInput}
+                name="gstin"
+              />
+            </label>
+            <label>
+              Airport Code
+              <input
+                placeholder="Airport Code"
+                value={formData.airportCode}
+                onChange={handleFormInput}
+                name="airportCode"
+              />
+            </label>
+          </>
+        )}
         <label>
           Password
           <input
@@ -99,7 +133,22 @@ const Register = ({ auth, register }) => {
             type="password"
           />
         </label>
-        <Button className="login-button" label="Sign up" primary={true} />
+        <div className="selectRegisterType">
+          <button
+            className="selectUser"
+            name={registerType == "user" ? "active" : ""}
+            onClick={(e) => handleSelectUser(e)}>
+            User
+          </button>
+          <button
+            className="selectProvider"
+            name={registerType == "provider" ? "active" : ""}
+            onClick={(e) => handleSelectProvider(e)}>
+            Provider
+          </button>
+        </div>
+
+        <Button className="register-button" label="Sign up" primary={true} />
         <span>
           already have an account?<Link to="/login"> Log in</Link>
         </span>

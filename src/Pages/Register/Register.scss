@@ -15,8 +15,8 @@ form{
     
     position: fixed;
     z-index: 1;
-    height: 80%;
-    width: 50rem;
+    height:40rem;
+    width: 80rem;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
@@ -66,7 +66,7 @@ form{
     
 
     button{
-        margin-top: 5%;
+        margin-top: 3%;
         margin-left: 45%;
     }
 
@@ -83,5 +83,25 @@ form{
         }
     }
 }
+.selectRegisterType{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2rem;
+    width: 25%;
+    // padding-left: 16rem;
+
+    .selectProvider, .selectUser{
+        margin: auto;
+        background-color: #E8E8E8;
+        color:color.$text-dark;
+    }
+
+    button[name=active]{
+        background-color: #145E75;
+        color: white;
+    }
+}
+
 
 }
