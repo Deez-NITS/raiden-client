@@ -8,6 +8,21 @@ const FlightResults = ({flight})=>{
         "July", "August", "September", "October", "November", "December"
     ];
 
+    const dates = [];
+    const [activeDate, setActiveDate] = useState(0);
+
+    const [airportType, setAirportType] = useState('');
+    
+    const [activeAirport, setActiveAirport] = useState(null);
+    for(let i=0, date = new Date();i<15;i++){
+        dates.push({date:date.getDate(), month:monthNames[date.getMonth()], active:false, dateObj:date});
+        date.setDate(date.getDate() + 1);
+    }
+
+  
+    dates[activeDate].active = true;
+
+
     const [source, setSource] = useState({
         "id": 1,
         "name": "Source Airport",
@@ -34,30 +49,17 @@ const FlightResults = ({flight})=>{
 
 
     useEffect(()=>{
-        httpService.get('/airport/1').then(s=>setSource(s.data.message));
-        httpService.get('/airport/2').then(s=>setDestination(s.data.message));
+        httpService.get('/airport/code/' + flightObj.sourceCode).then(s=>setSource(s.data.message));
+        httpService.get('/airport/code/' + flightObj.destinationCode).then(s=>setDestination(s.data.message));
           
         httpService.get('/flight/1')
         .then(fl => {
             setFlightObj(fl.data.message);
         });
-    }, [flight])
+    }, [flight, activeDate])
     
 
-    const [airportType, setAirportType] = useState('');
-    
-    const [activeAirport, setActiveAirport] = useState(null);
-    const dates = [];
-    const [activeDate, setActiveDate] = useState(0);
-    for(let i=0, date = new Date();i<15;i++){
-        dates.push({date:date.getDate(), month:monthNames[date.getMonth()], active:false});
-        date.setDate(date.getDate() + 1);
-    }
 
-  
-
-
-    dates[activeDate].active = true;;
     return(
         <>
             <div className="searchResults">

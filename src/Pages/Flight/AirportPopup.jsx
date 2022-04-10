@@ -2,6 +2,7 @@ import "./AirportPopup.scss";
 import { MdOutlineClose } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import { Button } from "../../Components";
+import { useNavigate } from "react-router-dom";
 const AirportPopup = ({
   airport,
   setActiveAirport,
@@ -14,6 +15,10 @@ const AirportPopup = ({
   const sDate = new Date(flightObj.startTime);
   const eDate = new Date(flightObj.endTime);
 
+  const navigate = useNavigate();
+  const handleSelect = ()=>{
+      navigate('/seller/' + airport.id);
+  }
 
 
   
@@ -48,7 +53,7 @@ const AirportPopup = ({
           <AiFillStar />
         </div> */}
 
-        <Button label="Select" primary={true} />
+        <Button label="Select" primary={true} onClick={handleSelect}/>
         <MdOutlineClose
           className="cross"
           onClick={() => setActiveAirport(null)}
