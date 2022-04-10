@@ -6,30 +6,31 @@ import "./Sellers.scss";
 import httpService from "../../Global/Services/httpService";
 
 const Sellers = () => {
-  // const [sellers, setSellers] = useState([]);
-  // const params = useParams();
 
-  // const { airportId } = params;
+  const [sellers, setSellers] = useState([]);
+  const [currSeller, setCurrSeller] = useState(null);
 
-  // useEffect(() => {
-  //   (async (id) => {
-  //     httpService.get()
-  //   })(airportId)
+  const params = useParams();
 
-  // },[])
+  const { airportId } = params;
 
-  const seller = {
-    id: 1,
-    name: "halal",
-    airportId: 123123,
-    gstin: "halal",
-    description: "halal halal halal halal halal halal halal halal halal halal ",
-    img: "/img/gmailLogo.png",
-    tags: ["chinese", "Indian"],
-    items: [],
-  };
+  useEffect(() => {
+    (async (id) => {
+      const res = await httpService.get("/airport/:id/providers");
 
-  const sellers = [seller, seller, seller];
+      const data = res.data;
+
+      if(data.success){
+        setSellers(data.message);
+      }
+
+    })(airportId)
+
+  },[airportId])
+
+  const handleSellerSelect = (seller) => {
+    setCurrSeller(seller);
+  }
 
   return (
     <section id="seller">
@@ -40,30 +41,32 @@ const Sellers = () => {
         Raiden
       </h1>
 
-      <ItemList />
+      {currSeller && <ItemList setCurrSeller={setCurrSeller} currSeller={currSeller} />}
 
       <div id="sellerListContainer">
         <h2 id="sellerListHeading">{"blaze aa"}</h2>
         <div id="sellerList">
-          {sellers.map((elem) => (
-            <div className="seller">
-              <div className="sellerImage">
-                <img src={elem.img} alt="" />
+          {
+            sellers.map((elem) => (
+              <div className="seller" key={elem.id} onClick={() => handleSellerSelect(elem)}>
+                <div className="sellerImage">
+                  <img src={encodeURI(elem.img)} alt="" />
+                </div>
+                <div className="sellerInfo">
+                  <div className="sellerName">{elem.name}</div>
+                  <div className="sellerDescription">{elem.description}</div>
+                  <div>
+
+                  </div>
+                </div>
+                <div className="sellerRating">
+                  <AiFillStar className="starIcon"/>
+                </div>
               </div>
-              <div className="sellerInfo">
-                <div className="sellerName">{elem.name}</div>
-                <div className="sellerDescription">{elem.description}</div>
-                <div></div>
-              </div>
-              <div className="sellerRating">
-                4.6
-                <AiFillStar className="starIcon" />
-              </div>
-            </div>
           ))}
         </div>
       </div>
-      <ProgressBar />
+      <ProgressBar stage={2}/>
     </section>
   );
 };
