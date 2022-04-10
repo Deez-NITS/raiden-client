@@ -1,14 +1,23 @@
 import { useEffect, useState } from 'react';
 import {AiOutlineSearch} from "react-icons/ai";
 
-const FlightQuery = ({flight, setFlight, setFoundFlight})=>{
+const FlightQuery = ({flight, setFlight, foundFlight, setFoundFlight})=>{
 
-    const flightNumbers = [
-        'SX-135',
-        'SX-345',
-        'SX-643',
-        'SX-467',
-    ]
+    const [flightNumbers, setFlightNumbers] = useState([]);
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/api/v1/flight/all')
+        .then(response => response.json())
+        .then(data => {
+            const temp = []
+            data.message.forEach((fl)=>temp.push(fl.flightNumber));
+            setFlightNumbers(temp);
+        });
+        
+    }, [foundFlight]);
+    
+
+  
 
     const [searchNumbers, setSearchNumbers] = useState([]);
 

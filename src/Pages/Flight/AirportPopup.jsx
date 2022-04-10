@@ -8,11 +8,15 @@ const AirportPopup = ({
   flight,
   airportType,
   activeDate,
+  flightObj
 }) => {
-  const flightObj = {
-    startTime: "13:34",
-    endTime: "14:12",
-  };
+
+  const sDate = new Date(flightObj.startTime);
+  const eDate = new Date(flightObj.endTime);
+
+
+
+  
 
   return (
     <>
@@ -24,25 +28,25 @@ const AirportPopup = ({
           <span className="place">{airport.place}</span>
           <span class="flight">Flight {flight}</span>
         </div>
-        <div class="data">
+        <div className="data">
           <img src="/img/airport.jpg" />
-          <div class="details">
+          <div className="details">
             {airportType == "source" && (
               <span className="time">
-                Departure: <span>{flightObj.startTime}</span>
+                Departure: <span>{sDate.getHours()}:{sDate.getMinutes()}</span>
               </span>
             )}
             {airportType == "destination" && (
               <span className="time">
-                Arrival: <span>{flightObj.endTime}</span>
+                Arrival: <span>{eDate.getHours()}:{eDate.getMinutes()}</span>
               </span>
             )}
           </div>
         </div>
-        <div className="rating">
+        {/* <div className="rating">
           {airport.rating}
           <AiFillStar />
-        </div>
+        </div> */}
 
         <Button label="Select" primary={true} />
         <MdOutlineClose

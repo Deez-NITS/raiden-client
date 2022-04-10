@@ -2,9 +2,10 @@ import "./Flight.scss";
 import { ProgressBar } from "../../Components";
 import FlightQuery from "./FlightQuery";
 import FlightResults from "./FlightResults";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Flight = () => {
+
   const [foundFlight, setFoundFlight] = useState(false);
   const [flight, setFlight] = useState("");
 
@@ -14,7 +15,7 @@ const Flight = () => {
         <img src="/img/logo.png" /> Radien
       </h1>
       {!foundFlight && (
-        <FlightQuery {...{ flight, setFlight, setFoundFlight }} />
+        <FlightQuery {...{ flight, setFlight, setFoundFlight, foundFlight }} />
       )}
       {foundFlight && <FlightResults {...{ flight }} />}
       <img className="background" src="/img/background.svg" />
