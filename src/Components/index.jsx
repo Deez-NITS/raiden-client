@@ -5,5 +5,6 @@ import Loader from "./Loader/Loader";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import ItemList from "./ItemList/ItemList";
 import ItemAddCard from "./ItemAddCard/ItemAddCard";
+import Counter from "./Counter/Counter";
 
-export { Navbar, Footer, Button, Loader, ProgressBar, ItemList, ItemAddCard };
+export { Navbar, Footer, Button, Loader, ProgressBar, ItemList, ItemAddCard, Counter };

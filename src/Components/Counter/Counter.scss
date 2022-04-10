@@ -1,0 +1,17 @@
+@use "/src/color.scss";
+
+#counter{
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  justify-content: space-between;
+
+  #actionBtnContainer{
+    display: flex;
+    align-items: center;
+
+    & > *{
+      margin-left: 1rem;
+    }
+  }
+}
